@@ -28,10 +28,17 @@ const removeError = (input) => {
 	formBox.classList.remove("error");
 };
 
+const checkLength = (input, minValue) => {
+	if (input.value.length < minValue) {
+		showError(input, `${input.previousElementSibling.innerText.slice(0, -1)} musi składać się z ${minValue} znaków.`);
+	}
+};
+
 sendBtn.addEventListener("click", (el) => {
 	el.preventDefault();
 
 	checkForm([username, password, password2, email]);
+	checkLength(username, 3);
 });
 
 clearBtn.addEventListener("click", (el) => {
