@@ -34,11 +34,19 @@ const checkLength = (input, minValue) => {
 	}
 };
 
+const checkPassword = (pass1, pass2) => {
+	if (pass1.value !== pass2.value) {
+		showError(pass2, "Hasła do siebie nie pasują.");
+	}
+};
+
 sendBtn.addEventListener("click", (el) => {
 	el.preventDefault();
 
 	checkForm([username, password, password2, email]);
 	checkLength(username, 3);
+	checkLength(password, 8);
+	checkPassword(password, password2);
 });
 
 clearBtn.addEventListener("click", (el) => {
