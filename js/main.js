@@ -50,7 +50,19 @@ const checkMail = (email) => {
 	}
 };
 
+const checkErrors = () => {
+	const allInputs = document.querySelectorAll(".form-box");
+	let errorCount = 0;
 
+	allInputs.forEach((el) => {
+		if (el.classList.contains("error")) {
+			errorCount++;
+		}
+	});
+	if (errorCount === 0) {
+		popup.classList.add("show-popup");
+	}
+};
 
 sendBtn.addEventListener("click", (el) => {
 	el.preventDefault();
@@ -60,6 +72,7 @@ sendBtn.addEventListener("click", (el) => {
 	checkLength(password, 8);
 	checkPassword(password, password2);
 	checkMail(email);
+	checkErrors();
 });
 
 clearBtn.addEventListener("click", (el) => {
